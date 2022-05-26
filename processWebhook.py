@@ -1,20 +1,22 @@
-import flask
-import os
-from flask import send_from_directory
+from xml.dom import minidom
 
-app = flask.Flask(__name__)
+root = minidom.Document()
 
-@app.route('/favicon.ico')
-def favicon():
-    return send_from_directory(os.path.join(app.root_path, 'static'),
-                               'favicon.ico', mimetype='image/favicon.png')
+response = root.createElement('response')
+root.appendChild(response)
 
-@app.route('/')
-@app.route('/home')
-def home():
-    return "Hello World"
+sayElement = root.createElement('Say')
+sayElement.setAttribute('voice', 'woman')
 
-if __name__ == "__main__":
-    app.secret_key = 'ItIsASecret'
-    app.debug = True
-    app.run()
+sayElementText = root.createTextNode('Please leave a message after the tone.')
+
+recordElement = root.createElement('Record')
+recordElement.setAttribute('maxLength', '20')
+
+response.appendChild(sayElement)
+sayElement.appendChild(sayElementText)
+response.appendChild(recordElement)
+
+xml_str = root.toprettyxml(indent ="\t")
+
+print(xml_str)
