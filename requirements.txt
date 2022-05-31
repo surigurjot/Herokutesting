@@ -26,7 +26,6 @@ intake
 jdcal
 jupyter
 jupyterlab
-mkl-fft
 mkl-random
 mkl-service
 mock
