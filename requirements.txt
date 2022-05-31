@@ -26,8 +26,6 @@ intake
 jdcal
 jupyter
 jupyterlab
-mkl-random
-mkl-service
 mock
 munkres
 mypy-extensions
